@@ -56,7 +56,7 @@ while (true) {
     }
     number++;
 }
-Part 3: Feeling Loopy
+//Part 3: Feeling Loopy
 
 // CSV string data
  const csvStringData = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";

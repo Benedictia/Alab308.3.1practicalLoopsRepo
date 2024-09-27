@@ -62,7 +62,7 @@ rows = csvString.split('\r\n');
 // Create a two-dimensional array
 let dataArray = [];
 
-// // Populate the two-dimensional array
+// // Populating the two-dimensional array
 for (let i = 0; i < rows.length; i++) {
     // Split each row into columns
     let columns = rows[i].split(',');

@@ -56,56 +56,26 @@ while (true) {
     }
     number++;
 }
+Part 3: Feeling Loopy
 
-//4.	Advanced Guessing Game with Do...While Loop
-
-// let targetNumber = 98; // The number to guess
-// let randomNumber = 55; // Guess
-
-// if (randomNumber > 100) {
-//     console.log("Guess is too high");
-// } else if (randomNumber <= 10) {
-//     console.log("Guess is too low");
-// } else if (randomNumber ===targetNumber) {
-//     console.log("Correct!");
-// } else {
-//     console.log("Please guess again.");
-// }
-
-//5.	Nested Loop Pattern for right triangle asterisks pattern
-// let height = 5; // user can input any desired height here
-
-// // Loop for each row
-// for (let i = 1; i <= height; i++) {
-//     let row = ""; // Initialize an empty string for the current row
-
-//     // Loop to add asterisks for the current row
-//     for (let j = 1; j <= i; j++) {
-//         row += "*"; // Add an asterisk for each column
-//     }
-
-//     console.log(row); // Print the current row
-// }
-
-//Labeled Statement with Break
 // CSV string data
-// const csvStringData = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
+ const csvStringData = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
 
-// let targetCell = "";
-// let cell1, cell2, cell3, cell4; // Storing each “cell” of data in a variable.
-// let rowIndex = 0;
+ let targetCell = "";
+let cell1, cell2, cell3, cell4; // Storing each “cell” of data in a variable.
+ let rowIndex = 0;
 
 // // Loop through the characters in the CSV string
-// for (let i = 0; i < csvStringData.length; i++) {
-//     const stringElement = csvStringData[i];
+ for (let i = 0; i < csvStringData.length; i++) {
+  const stringElement = csvStringData[i];
 
     if (stringElement === ',') {
-//         // Move to the next cell
-//         switch (rowIndex) {
-//             case 0: cell1 = targetCell.trim(); break;
-//             case 1: cell2 = targetCell.trim(); break;
-//             case 2: cell3 = targetCell.trim(); break;
-//             case 3: cell4 = targetCell.trim(); break;
+        // Move to the next cell
+     switch (rowIndex) {
+            case 0: cell1 = targetCell.trim(); break;
+           case 1: cell2 = targetCell.trim(); break;
+            case 2: cell3 = targetCell.trim(); break;
+            case 3: cell4 = targetCell.trim(); break;
         }
         targetCell = ""; // Reset current cell
         rowIndex++; // Move to the next cell
@@ -201,3 +171,90 @@ function parseCSV(csvString) {
 // Test with the second string
 console.log("Parsing second CSV string:");
 parseCSV(csvStringData);
+
+//Part 2: Expanding Functionality
+
+let rows = [];
+let numberOfColumns = 0;
+
+const csvString = "ID,Name,Occupation,Age\r\n42,Bruce,Knight,41\r\n57,Bob,Fry Cook,19\r\n63,Blaine,Quiz Master,58\r\n98,Bill,Doctor’s Assistant,26";
+
+// Split the CSV string into rows
+rows = csvString.split('\r\n');
+
+// Create a two-dimensional array
+let dataArray = [];
+
+// // Populate the two-dimensional array
+for (let i = 0; i < rows.length; i++) {
+    // Split each row into columns
+    let columns = rows[i].split(',');
+    dataArray.push(columns);
+}
+
+// // Count the number of columns from the first row (headers)
+ numberOfColumns = dataArray[0].length;
+
+console.log(`Number of columns: ${numberOfColumns}`);
+console.log('Two-dimensional array:', dataArray);
+
+///// convert headers to lowercase
+const headers = dataArray[0].map(header => header.toLowerCase());
+// // Create an array of objects for each row of data (excluding headers)
+const resultArray = dataArray.slice(1).map(row => {
+    let obj = {};
+    for (let i = 0; i < headers.length; i++) {
+        obj[headers[i]] = row[i];
+    }
+    return obj;
+});
+console.log( resultArray);
+
+// //Part 4: Sorting and Manipulating Data
+// //1 Remove the last element from the sorted array.
+dataArray.pop();
+console.log( dataArray);
+
+//2. Insert object at index 1:
+const newArray = [{ id: "48", name: "Barry", occupation: "Runner", age: "25" }]
+ resultArray.splice(1,0, ...newArray);
+ console.log('Array after inserting at index 1:', resultArray);
+
+ //Add  object to the end of the array:
+ resultArray.splice(4);
+resultArray.push ({ id: "7", name: "Bilbo", occupation: "None", age: "111" })
+console.log('Array after adding object at the end of the array:', resultArray);
+
+// //calculating average age using a loop
+let ageRange = [41, 25, 19, 58,111];
+let sum =0;
+let i= 0;
+while(i< ageRange.length){
+    sum += ageRange[i];
+    i++;
+}
+let average = sum / ageRange.length;
+console.log(average);
+
+//Part 5: Full Circle
+// transform the final set of data back into CSV format.
+people = [
+    { id: "42", name: "Bruce", occupation: "Knight", age: "41" },
+    { id: "48", name: "Barry", occupation: "Runner", age: "25" },
+    { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
+    { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
+    { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+];
+let csvContent = "id,name,occupation,age\n"
+people.forEach((person) =>{
+    let row = person.id +"," +person.name +"," + person.occupation +"," + person.age +"," + "\n"
+
+csvContent += row;
+});
+console.log(csvContent);
+
+
+
+
+
+
